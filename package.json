@@ -18,6 +18,8 @@
   "homepage": "https://github.com/SmashHouseUK/ThumbnailGenerator#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-run-electron": "^1.2.2"
+    "gulp-electron": "0.0.10",
+    "gulp-run-electron": "^1.2.2",
+    "electron": "^0.4.1"
   }
 }

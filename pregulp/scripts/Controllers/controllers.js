@@ -3,6 +3,5 @@
     angular.module('ThumbnailGenerator')
         .controller('MainController', ['$scope',
             function($scope) {
-                $scope.test = 'test';
             }])
 })();
