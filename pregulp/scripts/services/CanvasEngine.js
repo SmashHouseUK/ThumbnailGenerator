@@ -6,22 +6,19 @@
             function (imageService) {
                 var me = this;
 
-                me.initialise = function (canvasContext) {
-                    me.canvas = canvasContext;
+                me.addBackground = function () {
+                    imageService.addBackground('images/background/background.png');
                 };
 
-                me.drawBackground = function () {
-                    me.backgroundImage = imageService.drawBackground(me.canvas, 'images/background/background.png');
+                me.addBorder = function () {
+                    imageService.addBorder('images/border/border.png');
                 };
 
-                me.drawBorder = function () {
-                    me.BorderImage = imageService.drawBorder(me.canvas, 'images/border/border.png');
+                me.addImages = function () {
+                    me.addBackground();
+                    me.addBorder();
                 };
 
-                me.refresh = function () {
-                    console.log('refresh');
-                    me.drawBackground();
-                    me.drawBorder();
-                }
+                //me.drawImages = imageService.drawImages;
             }])
 })();

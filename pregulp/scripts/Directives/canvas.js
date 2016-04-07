@@ -1,14 +1,16 @@
 (function(){
     'use strict';
     angular.module('ThumbnailGenerator')
-        .directive('thumbnailCanvas', ['CanvasEngine', function(canvasEngine){
+        .directive('thumbnailCanvas', ['GlobalCanvas', 'CanvasEngine', 'ImageService',
+            function(globalCanvas, canvasEngine, imageService){
             return {
                 restrict: 'A',
                 template: '<canvas id="gameCanvas" width="1280" height="720" style="border:1px solid #000000;"></canvas>',
                 link: function(scope, element){
                     var canvas = element.find('canvas')[0];
-                    canvasEngine.initialise(canvas.getContext("2d"));
-                    canvasEngine.refresh();
+                    globalCanvas.setCanvas(canvas.getContext("2d"));
+                    canvasEngine.addImages();
+                    imageService.waitThenDraw();
                 }
             };
         }])
