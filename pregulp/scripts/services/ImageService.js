@@ -2,14 +2,15 @@
     'use strict';
 
     angular.module('ThumbnailGenerator')
-        .service('ImageService',['$interval', 'GlobalCanvas', function($interval, globalCanvas){
+        .service('ImageService',['$interval', 'GlobalCanvas', 'Drawer', 'GameSettings',
+            function($interval, globalCanvas, drawer, gameSettings){
             var me = this;
 
-            var gameImage = function(name, src, x, y){
+            var gameImage = function(name, src){
                 this.name = name;
                 this.image = new Image;
                 this.loaded =  false;
-                this.pos = [x,y];
+                this.pos = [0,0];
                 this.src = src;
             };
 
@@ -39,15 +40,13 @@
                 if (angular.isDefined(me.timer)){
                     console.log('cancelled');
                     $interval.cancel(me.timer);
-                    me.draw();
+                    console.log('images loaded');
+                    drawer.draw(me.gameImages);
                 }
             };
-            me.draw = function (){
-                console.log('draw');
-                globalCanvas.drawImage(me.gameImages[0].image, me.gameImages[0].pos[0],me.gameImages[0].pos[1]);
-                globalCanvas.drawImage(me.gameImages[1].image, me.gameImages[1].pos[0],me.gameImages[1].pos[1]);
-            };
+
             me.waitThenDraw = function(){
+                console.log(me.gameImages);
                 me.timer= $interval(me.getNumberOfImagesToLoad, 2);
             };
 
@@ -66,9 +65,8 @@
                 console.log('allLoaded');
             };
 
-            me.addImage = function (name, imageSource, x, y) {
-                console.log('addImage', name);
-                var img = new gameImage(name, imageSource, x, y);
+            me.loadImage = function (name, imageSource) {
+                var img = new gameImage(name, imageSource);
                 img.image.onload = function(){
                     console.log('loaded', name);
                     img.loaded = true;
@@ -77,12 +75,12 @@
                 me.gameImages.push(img);
             };
 
-            me.addBackground = function(imageSource){
-                me.addImage('background', imageSource, 0, 0);
+            me.addImage = function(name, imageSource){
+                me.loadImage(name, imageSource)
             };
 
-            me.addBorder = function(imageSource){
-                me.addImage('border',imageSource, 0, 0);
+            me.addCharacter = function(characterName, purpose){
+                me.loadImage(purpose, gameSettings.charactersLocation + characterName + '.png');
             };
         }])
 })();

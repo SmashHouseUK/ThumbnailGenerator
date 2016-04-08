@@ -4,21 +4,39 @@
     angular.module('ThumbnailGenerator')
         .service('GlobalCanvas', [function(){
             var me = this;
+            var canvas;
+            var context;
 
-            me.setCanvas = function(canvas) {
-                me.canvas = canvas;
+            me.setCanvas = function(aCanvas) {
+                canvas = aCanvas;
+                context = aCanvas.getContext("2d");
             };
 
             me.getCanvasContext = function(){
-                return me.canvas.getContext("2d");
+                return context;
             };
 
             me.getCanvas = function(){
-                return me.canvas;
+                return canvas;
             };
 
             me.drawImage = function(image, x, y){
-                me.canvas.getContext("2d").drawImage(image, x, y);
+                context.drawImage(image, x, y);
             };
+
+            me.drawFlippedImage = function(image, x, y){
+                context.save();
+                context.translate(canvas.width, 0);
+                context.scale(-1, 1);
+                me.drawImage(image, x, y);
+                context.restore();
+            };
+
+            me.writeText = function(textString, size, align, x, y){
+                context.font= size + "px BebasKai";
+                context.textAlign = align;
+                context.fillText(textString,x,y);
+            };
+
         }])
 })();

@@ -16,6 +16,11 @@ gulp.task('html', function(){
         .pipe(gulp.dest('.build/app/'));
 });
 
+gulp.task('css', function(){
+    return gulp.src('pregulp/CSS/**.css')
+        .pipe(gulp.dest('.build/app/'));
+});
+
 gulp.task('partials', function(){
     return gulp.src('pregulp/html/partials/**.html')
         .pipe(gulp.dest('.build/app/partials/'));
@@ -24,6 +29,11 @@ gulp.task('partials', function(){
 gulp.task('images', function(){
     return gulp.src('pregulp/images/**/**.*')
         .pipe(gulp.dest('.build/app/images'));
+});
+
+gulp.task('fonts', function(){
+    return gulp.src('pregulp/fonts/**/**.*')
+        .pipe(gulp.dest('.build/app/fonts'));
 });
 
 gulp.task('bowerFiles', function(){
@@ -51,7 +61,7 @@ gulp.task('watch', function(){
     gulp.watch('pregulp/**/*.html',['html']);
 });
 
-gulp.task('dostuff', ['scripts', 'html', 'partials', 'images']);
+gulp.task('dostuff', ['scripts', 'html', 'css', 'partials', 'images', 'fonts']);
 
 gulp.task('setup', ['dostuff', 'packageFile', 'mainJSFile', 'watch']);
 

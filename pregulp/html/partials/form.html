@@ -1,5 +1,8 @@
 <div>
-    <button ng-click = "createImage();">
-        Create Image
-    </button>
+    <button ng-click = "gen();">Generate</button>
+    <button ng-click = "$scope.showCanvas = !$scope.showCanvas;">Show Preview</button>
+    <button ng-click = "createImage();">Download PNG</button>
+    <div ng-show="$scope.showCanvas">
+        <div thumbnail-canvas></div>
+    </div>
 </div>
