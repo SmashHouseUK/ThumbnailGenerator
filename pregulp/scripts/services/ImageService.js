@@ -42,7 +42,7 @@
                     me.draw();
                 }
             };
-            me.drawCanvas = function (){
+            me.draw = function (){
                 console.log('draw');
                 globalCanvas.drawImage(me.gameImages[0].image, me.gameImages[0].pos[0],me.gameImages[0].pos[1]);
                 globalCanvas.drawImage(me.gameImages[1].image, me.gameImages[1].pos[0],me.gameImages[1].pos[1]);
@@ -72,7 +72,6 @@
                 img.image.onload = function(){
                     console.log('loaded', name);
                     img.loaded = true;
-                    globalCanvas.getCanvas().drawImage(img.image, x, y);
                 };
                 img.image.src = imageSource;
                 me.gameImages.push(img);

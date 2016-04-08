@@ -18,7 +18,5 @@
                     me.addBackground();
                     me.addBorder();
                 };
-
-                //me.drawImages = imageService.drawImages;
             }])
 })();

@@ -8,7 +8,7 @@
                 template: '<canvas id="gameCanvas" width="1280" height="720" style="border:1px solid #000000;"></canvas>',
                 link: function(scope, element){
                     var canvas = element.find('canvas')[0];
-                    globalCanvas.setCanvas(canvas.getContext("2d"));
+                    globalCanvas.setCanvas(canvas);
                     canvasEngine.addImages();
                     imageService.waitThenDraw();
                 }
