@@ -9,8 +9,6 @@
                 link: function(scope, element){
                     var canvas = element.find('canvas')[0];
                     globalCanvas.setCanvas(canvas);
-                    //canvasEngine.addImages();
-                    //imageService.waitThenDraw();
                 }
             };
         }])

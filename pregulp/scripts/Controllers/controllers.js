@@ -1,15 +1,17 @@
 (function() {
     'use strict';
     angular.module('ThumbnailGenerator')
-        .controller('MainController', ['$scope', 'ScreenshotCreator', 'CanvasEngine', 'ImageService',
-            function($scope, screenshotCreator, canvasEngine, imageService) {
+        .controller('MainController', ['$scope', 'ScreenshotCreator', 'GlobalCanvas', 'CanvasEngine', 'ImageService', 'FileReader', 'GameSettings',
+            function($scope, screenshotCreator, globalCanvas, canvasEngine, imageService, fileReader, gameSettings) {
                 $scope.gen = function(){
-                    console.log('generate');
+                    imageService.resetImages();
                     canvasEngine.addImages();
                     imageService.waitThenDraw();
                 };
+                $scope.fileReader = fileReader;
                 $scope.showCanvas = false;
                 $scope.createImage = screenshotCreator.createImage;
                 $scope.getImage = screenshotCreator.getImage;
+                $scope.gameSettings = gameSettings;
             }])
 })();

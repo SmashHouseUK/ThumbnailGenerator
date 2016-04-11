@@ -21,7 +21,6 @@
                         total++;
                     }
                 });
-                console.log('waiting for', total);
                 if(total === 0){
                     me.stopWait();
                 }
@@ -31,16 +30,12 @@
             me.timer = null;
 
             me.startWait = function (){
-                console.log('waiting for loads');
                 me.timer = $interval(me.getNumberOfImagesToLoad, 2);
             };
 
             me.stopWait = function (){
-                console.log('stop');
                 if (angular.isDefined(me.timer)){
-                    console.log('cancelled');
                     $interval.cancel(me.timer);
-                    console.log('images loaded');
                     drawer.draw(me.gameImages);
                 }
             };
@@ -50,7 +45,9 @@
                 me.timer= $interval(me.getNumberOfImagesToLoad, 2);
             };
 
-            me.gameImages = [];
+            me.resetImages = function(){
+                me.gameImages = [];
+            };
 
             me.getImageByName = function(name){
                 for (var i = 0; i < me.gameImages.length; i++){
@@ -68,7 +65,6 @@
             me.loadImage = function (name, imageSource) {
                 var img = new gameImage(name, imageSource);
                 img.image.onload = function(){
-                    console.log('loaded', name);
                     img.loaded = true;
                 };
                 img.image.src = imageSource;

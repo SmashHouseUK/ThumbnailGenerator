@@ -7,24 +7,33 @@
                 var me = this;
 
                 var addBackground = function () {
-                    imageService.addImage('background', 'images/background/background.png');
+                    imageService.addImage('background', __dirname + '/' + gameSettings.backgroundLocation + gameSettings.selectedBackground + '.png');
                 };
 
                 var addBorder = function () {
-                    imageService.addImage('border', 'images/border/border.png');
+                    imageService.addImage('border', __dirname + '/' + gameSettings.borderLocation + gameSettings.selectedBorder + '.png');
                 };
 
                 var addLogo = function () {
-                    imageService.addImage('logo', 'images/logos/melee logo.png');
+                    imageService.addImage('logo', __dirname + '/' + gameSettings.gameLogoLocation + gameSettings.selectedGameLogo + '.png');
+                };
+
+                var addDoublesCharacters = function () {
+                    for (var i = 0; i < gameSettings.doublesCharacterList.length; i++) {
+                        imageService.addCharacter(gameSettings.doublesCharacterList[i], 'player' + i);
+                    }
                 };
 
                 var addCharacters = function () {
-                    if (gameSettings.selectedGameMode === 'singles') {
+                    if (!gameSettings.doublesMode) {
                         for (var i = 0; i < gameSettings.singlesCharacterList.length; i++) {
-                            for (var j = 0; j < gameSettings.singlesCharacterList[i].length; j++) {
+                            for (var j = 0; j < gameSettings.getNumberOfCharacters(i); j++) {
                                 imageService.addCharacter(gameSettings.singlesCharacterList[i][j], 'player' + i + 'character' + j);
                             }
                         }
+                    }
+                    else{
+                        addDoublesCharacters();
                     }
                 };
 
