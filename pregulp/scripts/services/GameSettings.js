@@ -24,7 +24,8 @@
             me.datePos = [770, 700];
             me.gameTypePos = [640, 330];
             me.gameTypeSpace = 5;
-            me.twoCharactersOffset = 300;
+            me.twoCharactersXOffset = 300;
+            me.twoCharactersYOffset = 150;
 
             //data
             me.date = '11/11/1111';

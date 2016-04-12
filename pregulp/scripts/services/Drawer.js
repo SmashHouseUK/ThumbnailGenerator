@@ -124,7 +124,11 @@
                     var image = getImageByName(addressString);
                     console.log('image', image);
                     if (i % 2 === 0){
-                        image.pos[0]-=gameSettings.image
+                        image.pos[0]-=(gameSettings.twoCharactersXOffset/2);
+                        image.pos[1]-=(gameSettings.twoCharactersYOffset/2);
+                    }
+                    if (i % 2 === 1){
+                        image.pos[0]+=(gameSettings.twoCharactersXOffset/2);
                     }
                     if (i <= 1) {
                         drawImage(image);
